@@ -17,8 +17,11 @@ namespace AnimeList_Project
         Login log = new Login();
         protected void Page_Load(object sender, EventArgs e)
         {
-                this.Session["User"] = log.Session["MemberDetails"];
+            /*if (log.Session["email"] != null)
+            {
+                // do this only when Session Variable stores as a string the Username
+                Session["email"] = log.Session["email"];
+            }*/
         }
-
     }
 }

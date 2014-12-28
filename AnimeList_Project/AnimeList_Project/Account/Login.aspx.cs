@@ -37,7 +37,7 @@ namespace AnimeList_Project.Account
 
                 if (user != null)
                 {
-                    Session["MemberDetails"] = user.Email;
+                    Session["email"] = user.Email;
                     IdentityHelper.SignIn(manager, user, RememberMe.Checked);
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                     
