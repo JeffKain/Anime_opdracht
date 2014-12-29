@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.SessionState;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -11,8 +12,9 @@ namespace AnimeList_Project.Account
 {
     public partial class Login : Page
     {
-
+       
         public ApplicationUser user { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";

@@ -20,6 +20,7 @@ namespace AnimeList_Project.Account
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
+                db.AddUser(Email.Text, Password.Text);
                 IdentityHelper.SignIn(manager, user, isPersistent: false);
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -28,7 +29,6 @@ namespace AnimeList_Project.Account
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                db.AddUser(Email.Text, Password.Text);
             }
             else 
             {

@@ -11,13 +11,13 @@
    <asp:SqlDataSource    
    ConnectionString="<%$ ConnectionStrings:MyConnectionString %>"
    ID="SqlDataSource1" runat="server"
-   SelectCommand="SELECT DB21_ANIME.ANIMENAME, DB21_MYANIME.SCORE, DB21_MYANIME.GENRE, DB21_MYANIME.STATUS FROM DB21_MYANIME, DB21_ANIME, DB21_ACCOUNT WHERE DB21_MYANIME.MYANIMEID = DB21_ANIME.MYANIMEID AND DB21_MYANIME.ACCOUNTNR = DB21_ACCOUNT.ACCOUNTNR AND (DB21_ACCOUNT.MAILADDRESS = :MAILADDRESS)" ProviderName="<%$ ConnectionStrings:MyConnectionString.ProviderName %>">
+   SelectCommand="SELECT DB21_ANIME.ANIMENAME, DB21_MYANIME.SCORE, DB21_MYANIME.GENRE, DB21_MYANIME.STATUS FROM DB21_MYANIME, DB21_ANIME, DB21_ACCOUNT WHERE DB21_MYANIME.ANIME = DB21_ANIME.ANIMENAME AND DB21_MYANIME.ACCOUNTNR = DB21_ACCOUNT.ACCOUNTNR AND (DB21_ACCOUNT.MAILADDRESS = :MAILADDRESS)" ProviderName="<%$ ConnectionStrings:MyConnectionString.ProviderName %>">
        <SelectParameters>
            <asp:SessionParameter DefaultValue="barry@live.nl" Name="MAILADDRESS" SessionField="email" />
        </SelectParameters>
    </asp:SqlDataSource>
     
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Width="626px">
             <Columns>
                 <asp:BoundField DataField="ANIMENAME" HeaderText="ANIMENAME" SortExpression="ANIMENAME" />
                 <asp:BoundField DataField="SCORE" HeaderText="SCORE" SortExpression="SCORE" />

@@ -15,13 +15,14 @@ namespace AnimeList_Project
     public partial class _Default : Page
     {
         Login log = new Login();
+
+        SessionParameter email = new SessionParameter();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (log.Session["email"] != null)
-            {
-                // do this only when Session Variable stores as a string the Username
-                Session["email"] = log.Session["email"];
-            }*/
+            email.Name = "email";
+            email.Type = TypeCode.String;
+            email.SessionField = "email";
         }
     }
 }
