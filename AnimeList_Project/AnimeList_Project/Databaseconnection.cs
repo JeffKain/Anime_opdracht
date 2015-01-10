@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.ModelBinding;
 using System.Web.SessionState;
+using System.Web.UI.WebControls;
 using Oracle.DataAccess.Client;
 using Oracle.DataAccess;
 using Oracle.DataAccess.Types;
@@ -100,5 +101,39 @@ namespace AnimeList_Project
             return accountnr;
         }
 
+       public void AddComment(string email, string comment, string anime)
+        {
+            string sqlStatment = "INSERT INTO REVIEW(Name,Email,CommentBody) values(@Email,@CommentBody)";
+            using (OracleConnection con = new OracleConnection(conn.ConnectionString))
+            {
+                using (OracleCommand cmd = new OracleCommand(sqlStatment, con))
+                {
+                    con.Open();
+                    cmd.Parameters.Add("@Email", email);
+                    cmd.Parameters.Add("@CommentBody", comment);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+       public void PopulateComments(string anime,Repeater rptComments)
+       {
+           string sqlStatment = "Select mailaddress, description from DB21_REVIEW R, DB21_ACCOUNT a,DB21_MYANIME M WHERE R.MYANIMEID = M.MYANIMEID AND R.ACCOUNTNR= a.ACCOUNTNR and (M.ANIME=:anime)";
+           using (OracleConnection con = new OracleConnection(conn.ConnectionString))
+           {
+               using (OracleCommand cmd = new OracleCommand(sqlStatment, con))
+               {
+                   cmd.Parameters.Add(":anime", anime);
+                   using (OracleDataAdapter da = new OracleDataAdapter(cmd))
+                   {
+                       DataSet ds = new DataSet();
+                       da.Fill(ds);
+                       rptComments.DataSource = ds;
+                       rptComments.DataBind();
+                   }
+               }
+           }
+       }
     }
 }
