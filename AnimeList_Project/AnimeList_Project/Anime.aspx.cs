@@ -30,10 +30,14 @@ namespace AnimeList_Project
                     case "Dragonball_button":
                         db.AddAnime("airing", "Dragonball", "action", 9.1, 2, 2, 2748342, 1234567,
                             Session["email"].ToString());
+                        Response.Write("Dragonball has been succesfully added to your list");
+
                         break;
                     case "Full_Metal_Alchemist":
                         db.AddAnime("airing", "Full Metal Alchemist", "action", 7.9, 3, 3, 2546587, 254685,
                             Session["email"].ToString());
+                        Response.Write("Full Metal Alchemist has been succesfully added to your list");
+
                         break;
 
                 }

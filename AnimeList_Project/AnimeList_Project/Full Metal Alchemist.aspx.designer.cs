@@ -10,7 +10,7 @@
 namespace AnimeList_Project {
     
     
-    public partial class Dragonball {
+    public partial class Full_Metal_Alchemist {
         
         /// <summary>
         /// txtCommentBody control.

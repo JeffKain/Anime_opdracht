@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td class="borderClass bgColor" valign="top" style="width: 1030px">
-                <a id="dragonball">
+                <a id="dragonball" href="Dragonball.aspx">
                     <strong>Dragonball</strong>
                 </a>
                 <asp:LoginView runat="server" ViewStateMode="Disabled">
@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td class="borderClass bgColor" valign="top" style="width: 1030px">
-                <a>
+                <a href="Full Metal Alchemist.aspx">
                     <strong>Full Metal Alchemist</strong>
                 </a>
                 <asp:LoginView runat="server" ViewStateMode="Disabled">

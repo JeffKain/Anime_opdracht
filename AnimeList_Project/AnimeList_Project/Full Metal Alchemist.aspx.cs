@@ -18,22 +18,20 @@ using System.Configuration;
 
 namespace AnimeList_Project
 {
-    
-    public partial class Dragonball : System.Web.UI.Page
+    public partial class Full_Metal_Alchemist : System.Web.UI.Page
     {
-
         Databaseconnection db = new Databaseconnection();
-protected void Page_Load(object sender, EventArgs e)
-    {
-        if (!this.IsPostBack)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            db.PopulateComments("Dragonball",rptComments);
+            if (!this.IsPostBack)
+            {
+                db.PopulateComments("Full Metal Alchemist", rptComments);
+            }
         }
-    }
         protected void AddComment(object sender, EventArgs e)
         {
-            db.AddComment(txtCommentBody.Text,1,db.Getaccountnr(Session["email"].ToString()));
-            Response.Redirect("~/Dragonball.aspx");
+            db.AddComment(txtCommentBody.Text, 1, db.Getaccountnr(Session["email"].ToString()));
+            Response.Redirect("~/Full Metal Alchemist.aspx");
         }
 
         protected void Add_Anime(object sender, System.EventArgs e)
@@ -54,8 +52,5 @@ protected void Page_Load(object sender, EventArgs e)
 
             }
         }
-
-
-
     }
 }

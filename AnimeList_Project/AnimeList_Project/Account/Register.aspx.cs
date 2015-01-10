@@ -20,6 +20,7 @@ namespace AnimeList_Project.Account
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
+                Session["email"] = user.Email;
                 db.AddUser(Email.Text, Password.Text);
                 IdentityHelper.SignIn(manager, user, isPersistent: false);
 

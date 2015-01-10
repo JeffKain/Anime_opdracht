@@ -35,6 +35,11 @@ input[type="email"] {
     padding: 3px;
 }
 
+
+.rpComments {
+    margin-top: 5%;
+}
+
 .spaceit {
     margin: 3px 0;
     padding: 3px 0;

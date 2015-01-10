@@ -101,25 +101,32 @@ namespace AnimeList_Project
             return accountnr;
         }
 
-       public void AddComment(string email, string comment, string anime)
+       public void AddComment(string bericht,int myanime, int accnr)
         {
-            string sqlStatment = "INSERT INTO REVIEW(Name,Email,CommentBody) values(@Email,@CommentBody)";
-            using (OracleConnection con = new OracleConnection(conn.ConnectionString))
+            try
             {
-                using (OracleCommand cmd = new OracleCommand(sqlStatment, con))
-                {
-                    con.Open();
-                    cmd.Parameters.Add("@Email", email);
-                    cmd.Parameters.Add("@CommentBody", comment);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
+                OracleCommand cmd = this.conn.CreateCommand();
+                cmd.CommandText ="INSERT INTO DB21_REVIEW(DESCRIPTION, MYANIMEID, ACCOUNTNR) values(:bericht,:myanime, :accnr)";
+                cmd.Parameters.Add("comment", bericht);
+                cmd.Parameters.Add("myanime", myanime);
+                cmd.Parameters.Add("accountnr", accnr);
+
+                this.conn.Open();
+                cmd.ExecuteReader();
             }
+            catch (OracleException exc)
+            {
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
         }
 
        public void PopulateComments(string anime,Repeater rptComments)
        {
-           string sqlStatment = "Select mailaddress, description from DB21_REVIEW R, DB21_ACCOUNT a,DB21_MYANIME M WHERE R.MYANIMEID = M.MYANIMEID AND R.ACCOUNTNR= a.ACCOUNTNR and (M.ANIME=:anime)";
+           string sqlStatment = "Select mailaddress, description from DB21_REVIEW R, DB21_ACCOUNT a,DB21_MYANIME M WHERE R.ACCOUNTNR= a.ACCOUNTNR and M.MYANIMEID = R.MYANIMEID and (M.ANIME=:anime)";
            using (OracleConnection con = new OracleConnection(conn.ConnectionString))
            {
                using (OracleCommand cmd = new OracleCommand(sqlStatment, con))
